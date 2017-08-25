@@ -1,0 +1,22 @@
+{
+  "name": "sc-node-task",
+  "version": "0.0.1",
+  "description": "Social cops interview question",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vinayk93/SC-Node-Task.git"
+  },
+  "keywords": [
+    "Socialcops"
+  ],
+  "author": "Vinay Kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vinayk93/SC-Node-Task/issues"
+  },
+  "homepage": "https://github.com/Vinayk93/SC-Node-Task#readme"
+}
