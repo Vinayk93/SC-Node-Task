@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/Vinayk93/SC-Node-Task#readme",
   "dependencies": {
+    "compression": "^1.7.0",
     "download": "^6.2.5",
+    "helmet": "^3.8.1",
     "jimp": "^0.2.28",
     "json-patch": "^0.7.0",
     "jwt-simple": "^0.5.1",

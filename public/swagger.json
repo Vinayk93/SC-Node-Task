@@ -28,7 +28,7 @@
 					"description":"",
 					"operationId":"",
 					"consumes":["application/json","application/xml"],
-					"produces":["application/xml","application/json"],
+					"produces":["application/json"],
 					"parameters":[{
 						"in":"body",
 						"name":"body",
@@ -43,13 +43,14 @@
 					"summary":"Json Patch Functionality",
 					"description":"",
 					"operationId":"",
-					"produces":["application/xml","application/json"],
+					"produces":["application/json"],
 					"parameters":[{
 						"name":"body",
 						"in":"body",
 						"description":"Status values that need to be considered for filter",
 						"required":true,
-						"collectionFormat":"multi"}],
+						"collectionFormat":"multi",
+						"schema":{"$ref":"#/definitions/Tag"}}],
 					"responses":{
 						"200":{
 							"description":"successful operation"},
@@ -61,16 +62,17 @@
 						"summary":"upload Image",
 						"description":"",
 						"operationId":"",
-						"produces":["application/xml","application/json"],
+						"produces":["application/json"],
 						"parameters":[{
 							"name":"body",
 							"in":"body",
 							"description":"Tags to filter by",
 							"required":true,
 							"items":{"type":"string"},
+							"schema":{"$ref":"#/definitions/User"},
 							"collectionFormat":"multi"}],
 					"responses":{
-						"200":{"description":"successful operation","schema":{"type":"array","items":{"$ref":"#/definitions/Pet"}}},
+						"200":{"description":"successful operation"},
 						"400":{"description":"Invalid tag value"}},
 					"security":[]}}},
 					"securityDefinitions":{
@@ -96,7 +98,32 @@
 									"status":{"type":"string","description":"Order Status","enum":["placed","approved","delivered"]},
 									"complete":{"type":"boolean","default":false}},
 								"xml":{"name":"Order"}},
-							"Category":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"}},"xml":{"name":"Category"}},"User":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"username":{"type":"string"},"firstName":{"type":"string"},"lastName":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"},"phone":{"type":"string"},"userStatus":{"type":"integer","format":"int32","description":"User Status"}},"xml":{"name":"User"}},"Tag":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"}},"xml":{"name":"Tag"}},"Pet":{"type":"object","required":["name","photoUrls"],"properties":{"id":{"type":"integer","format":"int64"},"category":{"$ref":"#/definitions/Category"},"name":{"type":"string","example":"doggie"},"photoUrls":{"type":"array","xml":{"name":"photoUrl","wrapped":true},"items":{"type":"string"}},"tags":{"type":"array","xml":{"name":"tag","wrapped":true},"items":{"$ref":"#/definitions/Tag"}},"status":{"type":"string","description":"pet status in the store","enum":["available","pending","sold"]}},"xml":{"name":"Pet"}},"ApiResponse":{"type":"object","properties":{"code":{"type":"integer","format":"int32"},"type":{"type":"string"},"message":{"type":"string"}}}},"externalDocs":{"description":"Find out more about Swagger","url":"http://swagger.io"}}
+							"Category":{
+								"type":"object",
+								"properties":{
+									"id":{"type":"integer","format":"int64"},
+									"name":{"type":"string"}},
+									"xml":{"name":"Category"}},
+							"User":{
+								"type":"object",
+								"properties":{
+									"token":{"type":"string","example":"---copy from login----"},
+									"url":{"type":"string","example":"https://cdn.pixabay.com/photo/2016/03/28/12/35/cat-1285634_960_720.png"},
+									"userStatus":{"type":"integer","format":"int32","description":"User Status"}}
+								,"xml":{"name":"User"}},
+							"Tag":{
+								"type":"object",
+								"properties":{
+									"token":{"type":"string","example":"---copy from login ----"},
+									"json":{"type":"string", "example":{"baz": "qux","foo": "bar"} },"patch":{"type":"string","example":[{ "op": "replace", "path": "/baz", "value": "boo" },{ "op": "add", "path": "/hello", "value": ["world"] },{ "op": "remove", "path": "/foo"}]}},
+									"xml":{"name":"Tag"}},
+							"Pet":{
+								"type":"object",
+								"required":["name","photoUrls"],
+								"properties":{
+									"username":{"type":"string","example":"Candidate31"},
+									"password":{"type":"string","example":"asdasjfnfna"}},
+									"xml":{"name":"Pet"}},"ApiResponse":{"type":"object","properties":{"code":{"type":"integer","format":"int32"},"type":{"type":"string"},"message":{"type":"string"}}}},"externalDocs":{"description":"Find out more about Swagger","url":"http://swagger.io"}}
 
 
 

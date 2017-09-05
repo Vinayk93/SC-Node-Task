@@ -47,7 +47,7 @@
 			redis.save(req.body.username,req.body.password,function(done){
 				if(done == true){
 					pino.info('{status:ADD,username:'+req.body.username+',password::'+req.body.password+'}')
-					res.send('{"code":200,"error":"null","result":'+jwt.CreateJwt(req.body.username,req.body.password)+'}' );
+					res.send('{"code":200,"error":"null","result":"'+jwt.CreateJwt(req.body.username,req.body.password)+'"}' );
 				}else{
 					res.send('{"code":301,"error":"cannot do action here","result":null}');
 				}
@@ -77,7 +77,7 @@
 		router.post('/json_patch',(req,res)=>{
 			pino.info(req.body);
 			try{
-				res.send('{"code":200,error:null,"result:'+JSON.stringify(jsonpatch.apply(req.body.json,req.body.patch) ) +'}');
+				res.send('{"code":200,"error":"null","result":'+JSON.stringify(jsonpatch.apply(req.body.json,req.body.patch) ) +'}');
 			}catch(e){
 				console.log(e);
 				res.send('{"code":200,"error":"something went wrong","result":null');
@@ -90,7 +90,7 @@
 						    if (err) throw err;
 						    lenna.resize(50, 50)
 						         .write("./images/"+p[p.length-1] );
-						         res.send('{"code":200,"error":"null","result":localhost:3000/images/'+p[p.length-1]+'}' );
+						         res.send('{"code":200,"error":"null","result":"localhost:3000/images/'+p[p.length-1]+'"}' );
 						});
 		});
 
