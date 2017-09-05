@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/Vinayk93/SC-Node-Task/issues"
   },
-  "homepage": "https://github.com/Vinayk93/SC-Node-Task#readme"
+  "homepage": "https://github.com/Vinayk93/SC-Node-Task#readme",
+  "dependencies": {
+    "json-patch": "^0.7.0",
+    "jwt-simple": "^0.5.1",
+    "pino": "^4.7.1",
+    "redis": "^2.8.0"
+  }
 }

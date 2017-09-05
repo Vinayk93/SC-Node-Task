@@ -1,0 +1,105 @@
+{"swagger":"2.0",
+	"info":{
+		"description":"These are the list of apis which is used to comunicate with the app.",
+		"version":"1.0.0",
+		"title":"Socialcops Interview",
+		"termsOfService":"",
+		"contact":{"email":""},
+		"license":{}},
+	"host":"localhost:3000",
+	"basePath":"/api",
+		"tags":[{
+			"name":"Login",
+			"description":"Authentication System"},
+		{
+			"name":"Patch json",
+			"description":"Json patch functionality"},
+		{
+			"name":"Upload",
+			"description":"Upload image",
+			"externalDocs":{"description":"Upload image link here"}
+		}],
+		"schemes":["http"],
+			"paths":{
+				"/login":{
+				"post":{
+					"tags":["Login"],
+					"summary":"Login into the system",
+					"description":"",
+					"operationId":"",
+					"consumes":["application/json","application/xml"],
+					"produces":["application/xml","application/json"],
+					"parameters":[{
+						"in":"body",
+						"name":"body",
+						"description":"Username and passowrd credential",
+						"required":true,
+						"schema":{"$ref":"#/definitions/Pet"}}],
+					"responses":{"405":{"description":"Invalid input"}},
+					"security":[]}},
+				"/json_patch":{
+				"post":{
+					"tags":["Patch json"],
+					"summary":"Json Patch Functionality",
+					"description":"",
+					"operationId":"",
+					"produces":["application/xml","application/json"],
+					"parameters":[{
+						"name":"body",
+						"in":"body",
+						"description":"Status values that need to be considered for filter",
+						"required":true,
+						"collectionFormat":"multi"}],
+					"responses":{
+						"200":{
+							"description":"successful operation"},
+						"400":{"description":"Invalid status value"}},
+					"security":[]}},
+				"/upload":{
+					"post":{
+						"tags":["Upload"],
+						"summary":"upload Image",
+						"description":"",
+						"operationId":"",
+						"produces":["application/xml","application/json"],
+						"parameters":[{
+							"name":"tags",
+							"in":"body",
+							"description":"Tags to filter by",
+							"required":true,
+							"type":"array",
+							"items":{"type":"string"},
+							"collectionFormat":"multi"}],
+					"responses":{
+						"200":{"description":"successful operation","schema":{"type":"array","items":{"$ref":"#/definitions/Pet"}}},
+						"400":{"description":"Invalid tag value"}},
+					"security":[]}}},
+					"securityDefinitions":{
+						"petstore_auth":{
+							"type":"oauth2",
+							"authorizationUrl":"http://petstore.swagger.io/oauth/dialog",
+							"flow":"implicit",
+							"scopes":{
+								"write:pets":"modify pets in your account",
+								"read:pets":"read your pets"}},
+						"api_key":{
+							"type":"apiKey",
+							"name":"api_key",
+							"in":"header"}},
+						"definitions":{
+							"Order":{
+								"type":"object",
+								"properties":{
+									"id":{"type":"integer","format":"int64"},
+									"petId":{"type":"integer","format":"int64"},
+									"quantity":{"type":"integer","format":"int32"},
+									"shipDate":{"type":"string","format":"date-time"},
+									"status":{"type":"string","description":"Order Status","enum":["placed","approved","delivered"]},
+									"complete":{"type":"boolean","default":false}},
+								"xml":{"name":"Order"}},
+							"Category":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"}},"xml":{"name":"Category"}},"User":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"username":{"type":"string"},"firstName":{"type":"string"},"lastName":{"type":"string"},"email":{"type":"string"},"password":{"type":"string"},"phone":{"type":"string"},"userStatus":{"type":"integer","format":"int32","description":"User Status"}},"xml":{"name":"User"}},"Tag":{"type":"object","properties":{"id":{"type":"integer","format":"int64"},"name":{"type":"string"}},"xml":{"name":"Tag"}},"Pet":{"type":"object","required":["name","photoUrls"],"properties":{"id":{"type":"integer","format":"int64"},"category":{"$ref":"#/definitions/Category"},"name":{"type":"string","example":"doggie"},"photoUrls":{"type":"array","xml":{"name":"photoUrl","wrapped":true},"items":{"type":"string"}},"tags":{"type":"array","xml":{"name":"tag","wrapped":true},"items":{"$ref":"#/definitions/Tag"}},"status":{"type":"string","description":"pet status in the store","enum":["available","pending","sold"]}},"xml":{"name":"Pet"}},"ApiResponse":{"type":"object","properties":{"code":{"type":"integer","format":"int32"},"type":{"type":"string"},"message":{"type":"string"}}}},"externalDocs":{"description":"Find out more about Swagger","url":"http://swagger.io"}}
+
+
+
+
+
