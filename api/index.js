@@ -62,25 +62,36 @@
 		 * @return {[next or res]}
 		 */
 		function check_middleware(req,res,next) {
-			pino.info("we have it");
-			// jwt.CreateJwt();
-			next();
+			jwt.to_payload(req.body.token,function(payload){
+				redis.find(payload,function(find){
+					if(find == true){
+						next();
+					}else{
+						res.send('{"code":301,"error":"cannot do action here","result":null}');
+					}
+				})
+			})
 		}
+
 		router.use('/',check_middleware)
 		router.post('/json_patch',(req,res)=>{
 			pino.info(req.body);
-			res.send('{"code":200,error:null,"result:'+JSON.stringify(jsonpatch.apply(req.body.json,req.body.patch) ) +'}');
+			try{
+				res.send('{"code":200,error:null,"result:'+JSON.stringify(jsonpatch.apply(req.body.json,req.body.patch) ) +'}');
+			}catch(e){
+				console.log(e);
+				res.send('{"code":200,"error":"something went wrong","result":null');
+			}
 		});
 
 		router.post('/upload',(req,res)=>{
-				let p=req.body[0].split("/");
-				    Jimp.read(req.body[0], function (err, lenna) {
+				let p=req.body.url.split("/");
+				    Jimp.read(req.body.url, function (err, lenna) {
 						    if (err) throw err;
 						    lenna.resize(50, 50)
 						         .write("./images/"+p[p.length-1] );
 						         res.send('{"code":200,"error":"null","result":localhost:3000/images/'+p[p.length-1]+'}' );
 						});
-			
 		});
 
 

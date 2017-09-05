@@ -63,11 +63,10 @@
 						"operationId":"",
 						"produces":["application/xml","application/json"],
 						"parameters":[{
-							"name":"tags",
+							"name":"body",
 							"in":"body",
 							"description":"Tags to filter by",
 							"required":true,
-							"type":"array",
 							"items":{"type":"string"},
 							"collectionFormat":"multi"}],
 					"responses":{

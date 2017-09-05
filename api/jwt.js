@@ -9,5 +9,8 @@
 				};
 
 				return jwt.encode(payload,secret);
+			},
+			"to_payload":function(token,cb){
+				 cb(jwt.decode(token,secret));
 			}
 		};
