@@ -7,8 +7,7 @@ app.use(bodyParser.urlencoded({           // parse application/x-www-form-urlenc
   extended: true,
   uploadDir: './hunarfiles',
   limit: '150mb',
-})); 
-
+}));
 /**
  * [api folder contains all api routes and defination]
  */
@@ -42,6 +41,7 @@ app.use('/api',api);
 
 //docs with swagger
 app.use('/app_docs',express.static('public'));
+app.use('/images',express.static('./images'));
 
 
 app.listen(3000);

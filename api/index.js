@@ -7,7 +7,8 @@
 		 */
 		const pino 			= require('pino')();
 		const jsonpatch 	= require('json-patch');
-
+		const download 		= require('download');
+		const Jimp 			= require("jimp");
 		/**
 		 * internal functions location
 		 * create get and update functions 
@@ -72,10 +73,14 @@
 		});
 
 		router.post('/upload',(req,res)=>{
-			console.log(req.body[0]);
-			//first save it on tmp then change it to images with its url and url is available to all
+				let p=req.body[0].split("/");
+				    Jimp.read(req.body[0], function (err, lenna) {
+						    if (err) throw err;
+						    lenna.resize(50, 50)
+						         .write("./images/"+p[p.length-1] );
+						         res.send('{"code":200,"error":"null","result":localhost:3000/images/'+p[p.length-1]+'}' );
+						});
 			
-			res.send("ok");
 		});
 
 
